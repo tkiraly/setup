@@ -89,3 +89,7 @@ run every sunday `0 0 * * 0 certbot certonly`
 - mkdir -p /mnt/registry
 - docker service create --name registry --secret domain.crt --secret domain.key --mount type=bind,src=/mnt/registry,dst=/var/lib/registry --mount type=bind,src=/auth/htpasswd,dst=/auth/htpasswd -e "REGISTRY_AUTH=htpasswd" -e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" -e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd -e REGISTRY_HTTP_ADDR=0.0.0.0:5000 -e REGISTRY_HTTP_TLS_CERTIFICATE=/run/secrets/domain.crt -e REGISTRY_HTTP_TLS_KEY=/run/secrets/domain.key --publish published=5000,target=5000 registry:2
 
+## Install GO Athens
+
+- mkdir -p /mnt/athens
+- docker service create --mount type=bind,src=/mnt/athens,dst=/var/lib/athens -e ATHENS_DISK_STORAGE_ROOT=/var/lib/athens -e ATHENS_STORAGE_TYPE=disk --name athens-proxy --publish published=3000,target=3000 gomods/athens:latest
