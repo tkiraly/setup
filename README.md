@@ -80,3 +80,12 @@ New wallpaper every 30 minutes: `*/30 * * * * /usr/local/bin/unsplash.sh`
 
 run every sunday `0 0 * * 0 certbot certonly`
 
+## Install docker registry
+
+- docker secret create domain.crt /etc/letsencrypt/live/<DOMAIN>/fullchain.pem
+- docker secret create domain.key /etc/letsencrypt/live/<DOMAIN>/privkey.pem
+- sudo mkdir /auth
+- docker run --entrypoint htpasswd registry:2 -Bbn <USER> <PASSWORD> > /auth/htpasswd
+- mkdir -p /mnt/registry
+- docker service create --name registry --secret domain.crt --secret domain.key --mount type=bind,src=/mnt/registry,dst=/var/lib/registry --mount type=bind,src=/auth/htpasswd,dst=/auth/htpasswd -e "REGISTRY_AUTH=htpasswd" -e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" -e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd -e REGISTRY_HTTP_ADDR=0.0.0.0:5000 -e REGISTRY_HTTP_TLS_CERTIFICATE=/run/secrets/domain.crt -e REGISTRY_HTTP_TLS_KEY=/run/secrets/domain.key --publish published=5000,target=5000 registry:2
+
