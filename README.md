@@ -65,3 +65,18 @@ New wallpaper every 30 minutes: `*/30 * * * * /usr/local/bin/unsplash.sh`
 ### References
 
 - https://github.com/docker/docker-credential-helpers/issues/102
+
+## Install Certbot
+
+- sudo apt-get update
+- sudo apt-get install software-properties-common
+- sudo add-apt-repository -y universe
+- sudo add-apt-repository -y ppa:certbot/certbot
+- sudo apt-get update
+- sudo apt-get install -y certbot 
+- sudo certbot certonly
+
+### Cron job
+
+run every sunday `0 0 * * 0 certbot certonly`
+
