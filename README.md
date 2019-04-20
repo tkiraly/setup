@@ -56,7 +56,7 @@ New wallpaper every 30 minutes: `*/30 * * * * /usr/local/bin/unsplash.sh`
 - wget https://github.com/docker/docker-credential-helpers/releases/download/v0.6.0/docker-credential-pass-v0.6.0-amd64.tar.gz
 - tar -xf docker-credential-pass-v0.6.0-amd64.tar.gz
 - sudo mv docker-credential-pass /usr/local/bin/docker-credential-pass
-- sudo apt install gpg pass
+- sudo apt install -y gpg pass
 - gpg --full-generate-key
 - pass init 7EF78FB814C2FEFEFEF1DF76B7DCB97DB7174C52 # copy id from the former command
 - nano ~/.docker/config.json
@@ -73,11 +73,11 @@ New wallpaper every 30 minutes: `*/30 * * * * /usr/local/bin/unsplash.sh`
 
 ## Install Certbot
 
-- sudo apt-get update
-- sudo apt-get install software-properties-common
+- sudo apt-get update -y
+- sudo apt-get install -y software-properties-common
 - sudo add-apt-repository -y universe
 - sudo add-apt-repository -y ppa:certbot/certbot
-- sudo apt-get update
+- sudo apt-get update -y
 - sudo apt-get install -y certbot 
 - sudo certbot certonly
 
