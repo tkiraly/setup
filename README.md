@@ -1,6 +1,11 @@
 # setup
 knowledge base to setup various things on ubuntu
 
+## Turn off suspend on Lid close
+
+- sudo nano /etc/systemd/logind.conf
+-  add line `HandleLidSwitch=ignore`
+
 ## Install docker
 
 - sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
