@@ -24,7 +24,7 @@ knowledge base to setup various things on ubuntu
 
 Peek records your screen and generates gif.
 
-- sudo add-apt-repository - ppa:peek-developers/stable
+- sudo add-apt-repository ppa:peek-developers/stable
 - sudo apt update
 - sudo apt upgrade
 - sudo apt install peek
